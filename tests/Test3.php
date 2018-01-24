@@ -2,19 +2,27 @@
 
 namespace Tests\Test3;
 
-interface IAnimal {
-	public function eat(IFood $food);
-	public function breath(IElement $element);
-	public function setHabitat(IHabitat $habitat);
+
+
+interface IAnimalia {}
+interface IPlantae {}
+interface IFungi {}
+interface IProtozoa {}
+interface IChromista {}
+interface IArchaea {}
+interface IBacteria {}
+
+
+interface IMammal extends IAnimalia {
+	public function copule();
+}
+interface IReptile extends IAnimalia {
+	public function copule();
 }
 
-interface IMammal {
-	public function copule(IMammal $mammal);
-}
-
-interface IHuman {
+interface IHuman extends IMammal {
 	public function think();
-	public function copule(IHuman $human);
+	public function copule();
 }
 
 class main {

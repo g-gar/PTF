@@ -7,7 +7,7 @@ class ArrayStringFunctions {
 	public static function arrayToString($array=array()) {
 		return join($array);
 	}
-	public static function stringToArray($string="", $separator="") {
+	public static function stringToArray($string="") {
 		return str_split($string);
 	}
 }
@@ -17,7 +17,7 @@ class ArrayCaseReverse {
 		return array_map(function($letter){
 			$ascii = ord($letter);
 			$diff = ord('a') - ord('A');
-			return chr($ascii + (in_array($ascii, range(65,90)) ? $diff : (-1)*$diff));
+			return chr($ascii + $diff * (in_array($ascii, range(65,90)) ? 1 : -1));
 		}, $array);
 	}
 }
