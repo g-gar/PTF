@@ -30,6 +30,6 @@ class CaseReverseFacade {
 
 class main {
 	function __construct(){
-		echo CaseReverseFacade::reverseStringCase("HoLa");
+		echo CaseReverseFacade::reverseStringCase("AbcdefghijklmOpqrstuvwxyZ");
 	}
 }
