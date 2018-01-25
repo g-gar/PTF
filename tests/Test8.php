@@ -55,6 +55,10 @@ class TestCase {
 	}
 }
 
+class TestCases {
+
+}
+
 class Test {
 	private $testsCases;
 
@@ -63,17 +67,18 @@ class Test {
 	}
 
 	public function register($testCase){
-		$this->testCases[$testCase->testName] = \Closure::fromCallable($testCase->testFunction);
+		$this->testCases[$testCase->testName] = $testCase->testFunction;
 	}
 
 	public function run($testName, \ArrayObject $params=null) {
-		// TODO: inject params
-		$testFunction = $this->get($testName)->testFunction;
-		return $testFunction();
+		// TODO: inject params 
+		if ($t = $this->get($testName))
+			return $t();
+		else Throw new \Exception("not found");
 	}
 
 	public function get($testName) {
-		return ($i = array_search($testName, array_keys($this->testCases))) ? $this->$testCases[$i] : null;
+		return (!!array_search($testName, array_keys($this->testCases))) ? $this->$testCases[$testName] : null;
 	}
 
 	public function assertEqual($string1, $string2){
@@ -99,6 +104,6 @@ class main extends Test {
 			return true;
 		}));
 
-		$this->run('bookAddedCorrectly');
+		echo $this->run('bookAddedCorrectly');
 	}
 }
