@@ -15,7 +15,7 @@
 				$test_ns = "\\Tests\\$args[0]";
 				$test = "$test_ns\\main";
 
-				$test = new $test();
+				$test = new main();
 			}
 		} catch (\Exception $e) {
 			echo "Test invalid";
