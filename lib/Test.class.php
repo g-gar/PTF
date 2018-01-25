@@ -18,11 +18,9 @@ class Test {
 	public function __construct() {
 		$this->testsCases = array();
 	}
-
 	public function register($testCase){
 		$this->testCases[$testCase->testName] = $testCase->testFunction;
 	}
-
 	public function run($testName, \ArrayObject $params=null) {
 		// TODO: inject params
 		try {
@@ -31,17 +29,15 @@ class Test {
 			return $exception->getMessage();
 		}
 	}
-
 	public function get($testName) {
-
 		return array_search($testName, array_keys($this->testCases)) >= 0 ? $this->testCases[$testName] : null;
 	}
+}
 
-	public function assertEqual($string1, $string2){
-		if ($string1 === $string2) {
-			return true;
-		} else {
-			Throw new \Exception("assertEqual failed for '$string1' and '$string2'");
-		}
+class Assert {
+	public static function assertEqualString($expected, $actual){
+		if (is_string($actual) && is_string($expected) && $actual == $expected) {
+				
+		} else Throw new \Exception("Assert equal failed for strings '$actual' and '$expected'");
 	}
 }
