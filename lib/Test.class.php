@@ -24,10 +24,10 @@ class Test {
 	}
 
 	public function run($testName, \ArrayObject $params=null) {
-		// TODO: inject params 
+		// TODO: inject params
 		if ($t = $this->get($testName))
 			return $t();
-		else Throw new \Exception("not found");
+		else Throw new \Exception();
 	}
 
 	public function get($testName) {

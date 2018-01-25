@@ -1,31 +1,9 @@
 <?php
 
-namespace Tests\Test3;
+require 'lib/Test.class.php';
+require 'tests/classes/Animal.class.php';
 
-
-
-interface IAnimalia {}
-interface IPlantae {}
-interface IFungi {}
-interface IProtozoa {}
-interface IChromista {}
-interface IArchaea {}
-interface IBacteria {}
-
-
-interface IMammal extends IAnimalia {
-	public function copule();
-}
-interface IReptile extends IAnimalia {
-	public function copule();
-}
-
-interface IHuman extends IMammal {
-	public function think();
-	public function copule();
-}
-
-class main {
+class main extends \TestFramework\Test {
 	function __construct() {
 
 	}

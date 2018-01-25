@@ -1,77 +1,12 @@
 <?php
 
-// STRATEGY DESIGN PATTERN
+require 'lib/Test.class.php';
+require 'tests/classes/BookStore.class.php';
 
-namespace Tests\Test7;
+class main extends \TestFramework\Test{
+	public function __construct(){
 
-class Book {
-	private $author;
-	private $title;
-
-	function __construct($author, $title) {
-		$this->author = $author;
-		$this->title = $title;
-	}
-	function getAuthor() {
-		return $this->author;
-	}
-    function getTitle() {
-    	return $this->title;
-    }
-    function getAuthorAndTitle() {
-      return $this->getTitle() . ' by ' . $this->getAuthor();
-    }
-}
-
-class BookList {
-	private $books;
-
-	function __construct(){
-		$this->books = array();
-	}
-	function getBookCount() {
-		return count($this->books);
-	}
-	function getBook($index){
-		return is_numeric($index) && $index < $this->getBookCount() ? $this->books[$index] : null;
-	}
-	function addBook(Book $book) {
-		$this->books[$this->getBookCount()] = $book;
-	}
-	function removeBook(Book $book) {
-		if ($i = array_search($book, $this->books)) {
-			array_splice($books, $i, 1);
-		}
-	}
-}
-
-class BookListIterator {
-	protected $bookList;
-
-	function __construct(BookList $bookList){
-		$this->bookList = $bookList;
-	}
-
-	function getCurrentBook(){
-		return 0 < $this->bookList->getBookCount() ? $bookList->getBook(0) : null;
-	}
-	function getNextBook(){
-		$get = function (&$bookList){
-			$book = $bookList->getBook(0);
-			$bookList->removeBook($book);
-			return $book;
-		};
-		$book = $this->hasNextBook() ? $get($this->bookList) : null;
-		return $book;
-	}
-	function hasNextBook(){
-		return 0 < $this->bookList->getBookCount() ? true : false;
-	}
-	function getBookList(){ return $this->bookList; }
-}
-
-class main {
-	function __construct(){
+		parent::__construct();
 
 		ini_set("display_errors", 1);
 		error_reporting(E_ALL);
@@ -82,24 +17,22 @@ class main {
 		writeln('BEGIN TESTING ITERATOR PATTERN');
 		writeln('');
 
-		$firstBook = new Book('Core PHP Programming, Third Edition', 'Atkinson and Suraski');
-		$secondBook = new Book('PHP Bible', 'Converse and Park');
-		$thirdBook = new Book('Design Patterns', 'Gamma, Helm, Johnson, and Vlissides');
+		$firstBook = new \BookStore\Book('Core PHP Programming, Third Edition', 'Atkinson and Suraski');
+		$secondBook = new \BookStore\Book('PHP Bible', 'Converse and Park');
+		$thirdBook = new \BookStore\Book('Design Patterns', 'Gamma, Helm, Johnson, and Vlissides');
 
-		$books = new BookList();
+		$books = new \BookStore\BookList();
 		$books->addBook($firstBook);
 		$books->addBook($secondBook);
 		$books->addBook($thirdBook);
 
 		writeln('Testing the Iterator');
 
-		$booksIterator = new BookListIterator($books);
+		$booksIterator = new \BookStore\BookListIterator($books);
 
 		while ($booksIterator->hasNextBook()) {
-			//print_r($booksIterator->getBookList());
-			$book = $booksIterator->getNextBook();
 			writeln('getting next book with iterator :');
-			writeln($book->getAuthorAndTitle());
+			writeln($booksIterator->getNextBook()->getAuthorAndTitle());
 			writeln('');
 		}
 
