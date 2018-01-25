@@ -7,7 +7,7 @@ interface IPayStrategy {
 }
 
 class PayByCC implements IPayStrategy {
-	private $ccNum = '';
+    private $ccNum = '';
     private $ccType = '';
     private $cvvNum = '';
     private $ccExpMonth = '';
