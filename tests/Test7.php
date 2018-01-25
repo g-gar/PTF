@@ -1,5 +1,7 @@
 <?php
 
+// STRATEGY DESIGN PATTERN
+
 namespace Tests\Test7;
 
 class Book {
@@ -37,7 +39,7 @@ class BookList {
 		$this->books[$this->getBookCount()] = $book;
 	}
 	function removeBook(Book $book) {
-		if ($i = array_search($book, $books)) {
+		if ($i = array_search($book, $this->books)) {
 			array_splice($books, $i, 1);
 		}
 	}
@@ -45,22 +47,27 @@ class BookList {
 
 class BookListIterator {
 	protected $bookList;
-	protected $current;
 
 	function __construct(BookList $bookList){
 		$this->bookList = $bookList;
-		$this->current = 0;
 	}
 
 	function getCurrentBook(){
-		return $this->current < $this->bookList->getBookCount() ? $this->bookList->getBook($this->current) : null;
+		return 0 < $this->bookList->getBookCount() ? $bookList->getBook(0) : null;
 	}
 	function getNextBook(){
-		return $this->hasNextBook() ? $this->bookList->getBook($this->current++) : null;
+		$get = function (&$bookList){
+			$book = $bookList->getBook(0);
+			$bookList->removeBook($book);
+			return $book;
+		};
+		$book = $this->hasNextBook() ? $get($this->bookList) : null;
+		return $book;
 	}
 	function hasNextBook(){
-		return $this->current < $this->bookList->getBookCount() -1 ? true : false;
+		return 0 < $this->bookList->getBookCount() ? true : false;
 	}
+	function getBookList(){ return $this->bookList; }
 }
 
 class main {
@@ -89,6 +96,7 @@ class main {
 		$booksIterator = new BookListIterator($books);
 
 		while ($booksIterator->hasNextBook()) {
+			//print_r($booksIterator->getBookList());
 			$book = $booksIterator->getNextBook();
 			writeln('getting next book with iterator :');
 			writeln($book->getAuthorAndTitle());
