@@ -1,11 +1,14 @@
 <?php
 
 require 'lib/Test.class.php';
-require 'tests/classes/Facade1.class.php';
+require 'classes/Facade1.class.php';
 
-class main extends \TestFramework\Test {
+use \TestFramework\Test;
+use \Facade1\CaseReverseFacade;
+
+class main extends Test {
 	public function __construct(){
 		parent::__construct();
-		echo \Facade1\CaseReverseFacade::reverseStringCase("AbcdefghijklmOpqrstuvwxyZ");
+		echo CaseReverseFacade::reverseStringCase("AbcdefghijklmOpqrstuvwxyZ");
 	}
 }

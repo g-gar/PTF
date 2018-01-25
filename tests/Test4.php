@@ -1,20 +1,20 @@
 <?php
 
 require 'lib/Test.class.php';
-require 'tests/classes/Facade1.class.php';
+require 'lib/Assert.class.php';
 
-class main extends \TestFramework\Test {
+use \TestFramework\Test;
+use \TestFramework\Assert;
+
+class main extends Test {
 	function __construct(){
-		//parent::__construct();
-
-		ini_set('display_errors', 1);
-		error_reporting(E_ALL);
+		parent::__construct();
 
 		$a = '1';
 		$b = &$a;
 		$b = "2$b";
 		echo $a.", ".$b;
 
-		$this->assertEqual("1", "1");
+		Assert::assertEqualString("1", "2");
 	}
 }

@@ -1,22 +1,26 @@
 <?php
 
 require 'lib/Test.class.php';
-require 'tests/classes/BookStore.class.php';
+require 'lib/Assert.class.php';
+require 'classes/BookStore.class.php';
 
-class main extends \TestFramework\Test {
+use \TestFramework\TestCase;
+use \TestFramework\Assert;
+use \BookStore\BookList;
+use \BookStore\Book;
+
+class main extends Test {
 	public function __construct(){
 
 		parent::__construct();
 
-		$this->register(new \TestFrameWork\TestCase('bookAddedCorrectly', function(){
-			$bookList = new \BookStore\BookList();
-			$bookList->addBook(new \BookStore\Book("J. K. Rowling", "Harry Potter and the philosopher's stone"));
+		$this->register(new TestCase('bookAddedCorrectly', function(){
+			$bookList = new BookList();
+			$bookList->addBook(new Book("J. K. Rowling", "Harry Potter and the philosopher's stone"));
 			$book = $bookList->getBook(0);
-			$this->assertEqual("J. K. Rowlin", $book->getAuthor());
-
-			return true;
+			Assert::assertEqualString("J. K. Rowlin", $book->getAuthor());
 		}));
 
-		echo $this->run('bookAddedCorrectly');
+		$this->run('bookAddedCorrectly');
 	}
 }

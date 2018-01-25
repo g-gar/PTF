@@ -7,22 +7,20 @@
 		return trim($element, '.php');
 	}, array_diff(scandir($path_tests), array('..', '.')));
 
-	if (count($args[0]) > 0) {
-		$exceptions = array();
+	try {
+		if (!count($args)) {
+			Throw new \Exception("No test given. Executing first test in tests folder:<br/>");
+		} else $test = $args[0];
+	} catch (\Exception $e){
+		echo $e->getMessage();
+		$test = $avaiable_tests[2];
+	} finally {
 		try {
-			if (($t = array_search($args[0], $avaiable_tests)) >= 0) {
-				//TODO: handle this error
+			if ($t = array_search($test, $avaiable_tests)) {
 				require $path_tests . $avaiable_tests[$t] . '.php';
-
 				$test = new main();
-			}
+			} else Throw new \Exception("Test '$test' not found");
 		} catch (\Exception $e) {
-			echo "Test invalid - ";
-			array_push($exceptions, $e);
-		} finally {
-			print_r($exceptions);
-			foreach ($exceptions as $exception) {
-				echo $exception->getMessage();
-			}
+			echo "Test invalid - " . $e->getMessage();
 		}
-	} else echo "No test found";
+	}

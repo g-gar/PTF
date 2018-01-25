@@ -1,9 +1,15 @@
 <?php
 
 require 'lib/Test.class.php';
-require 'tests/classes/BookStore.class.php';
+require 'lib/Assert.class.php';
+require 'classes/BookStore.class.php';
 
-class main extends \TestFramework\Test{
+use \TestFramework\Test;
+use \BookStore\Book;
+use \BookStore\BookList;
+use \BookStore\BookListIterator;
+
+class main extends Test{
 	public function __construct(){
 
 		parent::__construct();
@@ -17,18 +23,18 @@ class main extends \TestFramework\Test{
 		writeln('BEGIN TESTING ITERATOR PATTERN');
 		writeln('');
 
-		$firstBook = new \BookStore\Book('Core PHP Programming, Third Edition', 'Atkinson and Suraski');
-		$secondBook = new \BookStore\Book('PHP Bible', 'Converse and Park');
-		$thirdBook = new \BookStore\Book('Design Patterns', 'Gamma, Helm, Johnson, and Vlissides');
+		$firstBook = new Book('Core PHP Programming, Third Edition', 'Atkinson and Suraski');
+		$secondBook = new Book('PHP Bible', 'Converse and Park');
+		$thirdBook = new Book('Design Patterns', 'Gamma, Helm, Johnson, and Vlissides');
 
-		$books = new \BookStore\BookList();
+		$books = new BookList();
 		$books->addBook($firstBook);
 		$books->addBook($secondBook);
 		$books->addBook($thirdBook);
 
 		writeln('Testing the Iterator');
 
-		$booksIterator = new \BookStore\BookListIterator($books);
+		$booksIterator = new BookListIterator($books);
 
 		while ($booksIterator->hasNextBook()) {
 			writeln('getting next book with iterator :');
