@@ -25,9 +25,11 @@ class Test {
 
 	public function run($testName, \ArrayObject $params=null) {
 		// TODO: inject params
-		if ($t = $this->get($testName))
-			return $t();
-		else Throw new \Exception();
+		try {
+			return $this->get($testName)();
+		} catch (\Exception $exception) {
+			return $exception->getMessage();
+		}
 	}
 
 	public function get($testName) {
@@ -38,7 +40,7 @@ class Test {
 		if ($string1 === $string2) {
 			return true;
 		} else {
-			Throw new Exception("assertEqual failed for '$string1' and '$string2'");
+			Throw new \Exception("assertEqual failed for '$string1' and '$string2'");
 		}
 	}
 }
