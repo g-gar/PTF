@@ -33,7 +33,8 @@ class Test {
 	}
 
 	public function get($testName) {
-		return (!!array_search($testName, array_keys($this->testCases))) ? $this->$testCases[$testName] : null;
+
+		return array_search($testName, array_keys($this->testCases)) >= 0 ? $this->testCases[$testName] : null;
 	}
 
 	public function assertEqual($string1, $string2){

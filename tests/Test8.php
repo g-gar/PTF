@@ -11,8 +11,8 @@ class main extends \TestFramework\Test {
 		$this->register(new \TestFrameWork\TestCase('bookAddedCorrectly', function(){
 			$bookList = new \BookStore\BookList();
 			$bookList->addBook(new \BookStore\Book("J. K. Rowling", "Harry Potter and the philosopher's stone"));
-			$book = $bookList->get(0);
-			//$this->assertEqual("J. K. Rowlin", $book->getAuthor());
+			$book = $bookList->getBook(0);
+			$this->assertEqual("J. K. Rowlin", $book->getAuthor());
 
 			return true;
 		}));
