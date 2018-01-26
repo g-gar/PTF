@@ -1,8 +1,6 @@
 <?php
 
 require 'lib/Test.class.php';
-require 'lib/Assert.class.php';
-require 'classes/BookStore.class.php';
 
 use \TestFramework\Test;
 use \BookStore\Book;

@@ -1,10 +1,9 @@
 <?php
 
 require 'lib/Test.class.php';
-require 'classes/PaymentGateway.class.php';
 
 use \TestFramework\Test;
-use \PaymentGateway\shoppingCart;
+use \PaymentGateway\ShoppingCart;
 
 class main extends Test {
 	public function __construct(){

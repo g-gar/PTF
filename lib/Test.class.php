@@ -23,19 +23,9 @@ class Test {
 		}
 		$this->testCases[$testCase->testName] = $fn;
 	}
-	public function run($testName, $params=array()) {
-		try {
-			$res = !!count($params) ? call_user_func_array($this->get($testName), $params) : $this->get($testName)();
-
-			array_push($this->test_results, array(
-				"name" => $testName, 
-				"parameters" => $params,
-				"result" => $res
-			));
-
-		} catch (\ErrorException $exception) {
-			$this->test_results[$testName] = $exception;
-		}
+	public function run($testname, $params=array()) {
+		$testcase = $this->get($testname);
+		$testcase->run($params);
 	}
 	public function get($testName) {
 		return array_search($testName, array_keys($this->testCases)) >= 0 ? $this->testCases[$testName] : null;
