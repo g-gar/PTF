@@ -15,11 +15,12 @@ class main extends Test {
 		$this->register(new TestCase("1==1", function(){
 			Assert::assertEqualString("1", "1");
 		}));
-		$this->register(new TestCase("a==A", "\\TestFramework\\Assert::assertEqualString"));
+		$this->register(new TestCase("equal strings", "\\TestFramework\\Assert::assertEqualString"));
 
 		$this->run("1==2");
 		$this->run("1==1");
-		$this->run("a==A", array("a", "A"));
+		$this->run("equal strings", array("a", "a"));
+		$this->run("equal strings", array("kike", "Enrique"));
 
 		print_r($this->getFailedTests());
 		print_r($this->getCorrectTests());

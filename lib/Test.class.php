@@ -24,11 +24,15 @@ class Test {
 		$this->testCases[$testCase->testName] = $fn;
 	}
 	public function run($testName, $params=array()) {
-		// TODO: inject params
 		try {
-			if (!!count($params)) {
-				$this->test_results[$testName] = call_user_func_array($this->get($testName), $params);
-			} else $this->test_results[$testName] = $this->get($testName)();
+			$res = !!count($params) ? call_user_func_array($this->get($testName), $params) : $this->get($testName)();
+
+			array_push($this->test_results, array(
+				"name" => $testName, 
+				"parameters" => $params,
+				"result" => $res
+			));
+
 		} catch (\ErrorException $exception) {
 			$this->test_results[$testName] = $exception;
 		}
