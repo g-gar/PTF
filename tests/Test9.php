@@ -8,6 +8,7 @@ use \TestFramework\Assert;
 
 class main extends Test {
 	function __construct(){
+		parent::__construct();
 
 		/*$this->register(new TestCase("1==2", function(){
 			Assert::assertEqualString("1", "2");
@@ -26,7 +27,10 @@ class main extends Test {
 		print_r($this->getCorrectTests());*/
 
 		$t = new TestCase("equal strings", "\\TestFramework\\Assert::assertEqualString");
-		$this->register($t);
-		$this->run("equal strings", array("a", "A"));
+		$t->run(array("a", "A"));
+		$t->run(array("a", "a"));
+
+		print_r($t->getFails());
+		print_r($t->getCorrect());
 	}
 }
