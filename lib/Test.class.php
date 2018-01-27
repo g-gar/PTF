@@ -17,6 +17,9 @@ class Test {
 		//TODO: unique testcase
 		array_push($this->testcases, $testcase);
 	}
+	public function unregister($testcase){
+		
+	}
 	public function run($testname, $params=array()) {
 		$testcase = $this->get($testname);
 		$testcase->run($params);
