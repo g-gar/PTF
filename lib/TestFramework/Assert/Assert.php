@@ -1,13 +1,8 @@
 <?php
 
-namespace TestFramework;
+namespace TestFramework\Assert;
 
-interface IAssert {
-	public static function assertEqualString($expected, $actual);
-	
-}
-
-class Assert {
+class Assert implements IAssert {
 	public static function assertString($expected, $actual){
 		if (is_string($actual) && is_string($expected) && $actual == $expected) {
 			return True;
@@ -16,7 +11,3 @@ class Assert {
 	public static function assertArray(){}
 }
 
-class AssertNot {
-	public static function assertString(){}
-	public static function assertArray(){}
-}

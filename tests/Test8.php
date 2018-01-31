@@ -1,10 +1,8 @@
 <?php
 
-require 'lib/Test.class.php';
-
 use \TestFramework\Test;
 use \TestFramework\TestCase;
-use \TestFramework\Assert;
+use \TestFramework\Assert\Assert;
 use \BookStore\BookList;
 use \BookStore\Book;
 
@@ -17,7 +15,7 @@ class main extends Test {
 			$bookList = new BookList();
 			$bookList->addBook(new Book("J. K. Rowling", "Harry Potter and the philosopher's stone"));
 			$book = $bookList->getBook(0);
-			Assert::assertEqualString("J. K. Rowlin", $book->getAuthor());
+			Assert::assertString("J. K. Rowlin", $book->getAuthor());
 		}));
 
 		$this->run('bookAddedCorrectly');

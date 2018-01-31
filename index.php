@@ -1,8 +1,8 @@
 <?php
 
-require 'lib/Router.class.php';
+require 'lib/Router.php';
 
-$router = new \APP\Router($_SERVER["REQUEST_URI"]);
+$router = new Router($_SERVER["REQUEST_URI"]);
 
 $router->get('/', 'app/home');
 $router->get('test/', 'app/test');

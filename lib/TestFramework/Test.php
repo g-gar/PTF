@@ -2,11 +2,6 @@
 
 namespace TestFramework;
 
-require 'lib/TestCase.class.php';
-require 'lib/Assert.class.php';
-
-use \TestFramework\Assert;
-
 class Test {
 	private $testcases;
 

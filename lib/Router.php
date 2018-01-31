@@ -1,7 +1,5 @@
 <?php
 
-namespace APP;
-
 function is_uppercase($letter) {
 	return in_array(ord($letter), range(65, 90));
 }
@@ -10,19 +8,17 @@ function is_lowercase($letter) {
 }
 
 spl_autoload_register(function($classname){
+	$temp = preg_match("/TestFramework.*/", $classname) ? "lib" : "classes";
+	$temp = $temp . "/" . str_replace("\\", "/", $classname) .".php";
 	$name = array_reverse(explode("\\", $classname))[0];
-	$temp = "classes/". str_replace("\\", "/", $classname) .".****.php";
-	$is = "";
 
-	if ( is_uppercase($name[0]) && is_lowercase($name[1]) ) { // is class
-		$is = "class";
+/*	if ( is_uppercase($name[0]) && is_lowercase($name[1]) ) { // is class
+
 	} else if ( is_uppercase($name[0]) && is_uppercase($name[1]) && $name[0] == 'I' ) { // is interface
-		$temp = str_replace("/I", "/", $temp);
-		$is = "interface";
-		
-	} else Throw new \Exception("Required element not supported");
-
-	$temp = str_replace("****", "$is", $temp);
+		//$temp = str_replace("/I", "/", $temp);
+	} else if ( is_uppercase($name[0]) && is_uppercase($name[1]) && $name[0] == 'E' ) { // is enum
+		//$temp = str_replace("/E", "/", $temp);
+	} else Throw new \Exception("Required element not supported");*/
 
 	require $temp;
 });

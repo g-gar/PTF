@@ -16,7 +16,7 @@ class TestCase {
 	}
 
 	public function run($args=array()){
-		$res = !!count($args) ? call_user_func_array($this->function, $args) : $this->function();
+		$res = call_user_func_array($this->function, $args);
 
 		array_push($this->results, array(
 			"parameters" => $args,

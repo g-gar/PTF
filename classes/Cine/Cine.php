@@ -2,8 +2,6 @@
 
 namespace Cine;
 
-use \Cine\Sala;
-
 class Cine {
 	protected $salas;
 

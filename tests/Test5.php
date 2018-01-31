@@ -1,7 +1,5 @@
 <?php
 
-require 'lib/Test.class.php';
-
 use \TestFramework\Test;
 use \Facade1\CaseReverseFacade;
 

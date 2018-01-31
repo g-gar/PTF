@@ -2,7 +2,7 @@
 
 namespace Cine;
 
-use \Cine\Estado;
+use \Cine\EEstado;
 
 class Butaca {
 	protected $estado;

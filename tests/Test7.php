@@ -1,7 +1,5 @@
 <?php
 
-require 'lib/Test.class.php';
-
 use \TestFramework\Test;
 use \BookStore\Book;
 use \BookStore\BookList;

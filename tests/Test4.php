@@ -1,8 +1,5 @@
 <?php
 
-require 'lib/Test.class.php';
-require 'lib/Assert.class.php';
-
 use \TestFramework\Test;
 use \TestFramework\Assert;
 
