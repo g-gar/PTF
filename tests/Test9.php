@@ -1,13 +1,9 @@
 <?php
 
-use \TestFramework\Test;
-use \TestFramework\TestCase;
-use \TestFramework\Assert\Assert;
-
-class main extends Test {
+class main extends \TestFramework\Test {
 	function __construct(){
 
-		$t = new TestCase("equal strings", "\\TestFramework\\Assert\\Assert::assertString");
+		$t = new \TestFramework\TestCase("equal strings", "\\TestFramework\\Assert\\Assert::assertString");
 		$t->run(array("a", "A"));
 		$t->run(array("a", "a"));
 
